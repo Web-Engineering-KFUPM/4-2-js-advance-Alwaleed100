@@ -9,7 +9,7 @@ INSTRUCTIONS:
 */
 
 //You can uncomment the console.log code to check if your js file is connected with html file or not.
-//console.log("%cJS Lab Connected — Start completing the TODOs for Advance JavaScript!", "font-weight:bold; font-size:14px");
+console.log("%cJS Lab Connected — Start completing the TODOs for Advance JavaScript!", "font-weight:bold; font-size:14px");
 
 // ==========================
 // TODO-1: OBJECT with GETTERS & SETTERS
@@ -21,6 +21,30 @@ Task:
 3) Add a setter updateGpa(newGpa) or use a set accessor for gpa that validates 0.0–4.0.
 4) Create an instance/object and output its attributes using the getter(s).
 */
+const student = {
+   firstName: "Alwaleed",
+   lastName: "Alharthi",
+   _gpa: 3.5,
+   get fullName(){
+      return this.firstName + " " + this.lastName;
+   },
+   get gpa(){
+      return this._gpa;
+   },
+
+   set gpa(newGpa){
+      if (newGpa >= 0 && newGpa <= 4 ){
+         this._gpa = newGpa;
+      } else{
+         console.log("Invalid Gpa")
+      }
+   }
+
+
+}
+
+console.log(student.firstName);
+student.gpa = 3.9
 
 // ====================================
 // TODO-2: OBJECT AS MAP + for...in LOOP
@@ -30,6 +54,16 @@ Task:
 1) Make an object used as a "map" (key → value), e.g., course codes → titles.
 2) Iterate over it with for...in and display each key and value.
 */
+const courses = {
+  SWE363: "Web Engineering",
+  CIS101: "Intro to Computing",
+  BUS200: "Business Analysis"
+};
+
+for (const code in courses) {
+  console.log(code, "→", courses[code]);
+}
+
 
 // =========================================
 // TODO-3: STRING OBJECT — charAt() & length
@@ -39,6 +73,16 @@ Task:
 1) Create a String object or plain string.
 2) Use .charAt(index) and .length to output characters and size.
 */
+const phrase = "Dr.Omar_Hammad";
+console.log("length =", phrase.length);
+
+for(let i=0; i < phrase.length; i++){
+   console.log(phrase.charAt(i));
+}
+
+
+
+
 
 // ===================================
 // TODO-4: DATE — day, month, and year
@@ -49,6 +93,11 @@ Task:
 2) Find and display the current day of month, month (0–11), and year.
 //    (Hint: getDate(), getMonth(), getFullYear() )
 */
+const today = new Date();
+console.log(today.getDate());
+console.log(today.getMonth() + 1 );
+console.log(today.getFullYear());
+
 
 // ============================================================
 // TODO-5: ARRAY + SPREAD — find MIN and MAX from 10 numbers
@@ -59,6 +108,13 @@ Task:
 2) Use spread syntax with Math.min(...) and Math.max(...) to find extremes.
 3) Display both values.
 */
+const myArr = [2,0,2,1,5,8,8,5,0,40];
+const min = Math.min(...myArr); 
+const max = Math.max(...myArr);
+
+console.log("min=", min, "max=",  max);
+
+
 
 // ===================================================================
 // TODO-6: EXCEPTIONS — try/catch/finally with EMPTY ARRAY edge case
@@ -71,6 +127,21 @@ Task:
    in each block so you can see the flow of control.
 */
 
+function findMax(arr) {
+  if (arr.length === 0) {
+    throw new Error("Array is empty!");
+  }  
+  return Math.max(...arr);
+}
+
+try {
+  console.log(findMax([])); 
+} catch (e) {
+  console.log("Error caught:", e.message);
+} finally {
+  console.log("Execution finished.");
+}
+
 // ===================================================================================
 // TODO-7: REGEX + forEach — find words containing 'ab' and log matches from the list
 // ===================================================================================
@@ -82,5 +153,15 @@ Given: const words = ["ban", "babble", "make", "flab"];
 3) For matches, log "<word> matches!".
 4) Display the words that matches the pattern.
 */
+
+const words = ["ban", "babble", "make", "flab"];
+const pattern = /ab/; 
+
+words.forEach(word => {
+  if (pattern.test(word)) {
+    console.log(word, "matches!");
+  }
+});
+
 
 // End of Advance JavaScript Lab — good luck!
